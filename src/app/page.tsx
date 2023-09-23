@@ -1,95 +1,66 @@
-import Image from 'next/image'
 import styles from './page.module.css'
+"use client";
+import {useState} from 'react'
+
 
 export default function Home() {
+
+
+  const [panel,setpanel]=useState('0')
+
+
+  const button=(e:React.MouseEvent<HTMLButtonElement>)=>{
+    if (e.target){
+      let valorButton=(e.target as HTMLButtonElement).value
+      const regex = /[0-9]/;
+      
+      
+      if(!regex.test(valorButton)){
+        console.log('no es numero');
+      }
+
+      setpanel(valorButton)
+
+      
+    }
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <div className='calculadora-contenedor'>
+        <div className='panel'>
+          {panel}
         </div>
+
+        <div className='btn-contenedor'>
+          <div className='num-botones'>
+
+            <button value="9" onClick={button} className='btn-num'>9</button>
+            <button value="8" onClick={button} className='btn-num'>8</button>
+            <button value="7" onClick={button} className='btn-num'>7</button>
+            <button value="6" onClick={button} className='btn-num'>6</button>
+            <button value="5" onClick={button} className='btn-num'>5</button>
+            <button value="4" onClick={button} className='btn-num'>4</button>
+            <button value="3" onClick={button} className='btn-num'>3</button>
+            <button value="2" onClick={button} className='btn-num'>2</button>
+            <button value="1" onClick={button} className='btn-num'>1</button>
+            <button value="0" onClick={button} className='btn-num cero'>0</button>
+            
+          </div>
+          <div className='opera-botones'>
+            <button value="C" onClick={button} className='btn-opr'>C</button>
+            <button value="%" onClick={button} className='btn-opr'>%</button>
+            <button value="+" onClick={button} className='btn-opr'>+</button>
+            <button value="-" onClick={button} className='btn-opr'>-</button>
+            <button value="/" onClick={button} className='btn-opr'>/</button>
+            <button value="x" onClick={button} className='btn-opr'>x</button>
+            <button value="=" onClick={button} className='btn-opr'>=</button>
+          </div>
+        </div>
+
+
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+    
     </main>
   )
 }
