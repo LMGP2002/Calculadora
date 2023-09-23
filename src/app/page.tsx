@@ -6,22 +6,41 @@ import {useState} from 'react'
 export default function Home() {
 
 
-  const [panel,setpanel]=useState('0')
+  const [panel,setpanel]=useState('')
 
 
   const button=(e:React.MouseEvent<HTMLButtonElement>)=>{
     if (e.target){
       let valorButton=(e.target as HTMLButtonElement).value
-      const regex = /[0-9]/;
+      const regexOpr=/[0-9]/
+      const regex=/^(.*[-x+%\/]){2,}.*$/
       
-      
-      if(!regex.test(valorButton)){
-        console.log('no es numero');
-      }
+      if(regexOpr.test(valorButton)){
+        console.log();
+        
+        
+      }else
+        
 
-      setpanel(valorButton)
+
+
+
+      if(valorButton=='C') setpanel("")
+
+      if(valorButton=='=') operacion(valorButton)
+
+
+    
+        
+      
 
       
+    }
+
+    function operacion(valorButton:any){
+      console.log('operacion');
+      setpanel("")
+
     }
   }
 
