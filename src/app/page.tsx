@@ -1,4 +1,3 @@
-import styles from './page.module.css'
 "use client";
 import {useState} from 'react'
 
@@ -12,35 +11,26 @@ export default function Home() {
   const button=(e:React.MouseEvent<HTMLButtonElement>)=>{
     if (e.target){
       let valorButton=(e.target as HTMLButtonElement).value
-      const regexOpr=/[0-9]/
-      const regex=/^(.*[-x+%\/]){2,}.*$/
+      setpanel(panel+valorButton)  
       
-      if(regexOpr.test(valorButton)){
-        console.log();
-        
-        
-      }else
-        
-
-
-
-
+      
+      
       if(valorButton=='C') setpanel("")
-
-      if(valorButton=='=') operacion(valorButton)
-
-
-    
-        
       
-
       
     }
-
-    function operacion(valorButton:any){
-      console.log('operacion');
-      setpanel("")
-
+    
+  }
+  
+  
+  
+  const operacion=()=>{
+    try{
+      let result=eval(panel)
+      setpanel(`${panel}=${result}`)  
+      
+    }catch(err){
+      alert('Por favor, ingrese una operación válida')
     }
   }
 
@@ -68,12 +58,12 @@ export default function Home() {
           </div>
           <div className='opera-botones'>
             <button value="C" onClick={button} className='btn-opr'>C</button>
-            <button value="%" onClick={button} className='btn-opr'>%</button>
+            <button value="/100" onClick={button} className='btn-opr'>%</button>
             <button value="+" onClick={button} className='btn-opr'>+</button>
             <button value="-" onClick={button} className='btn-opr'>-</button>
             <button value="/" onClick={button} className='btn-opr'>/</button>
-            <button value="x" onClick={button} className='btn-opr'>x</button>
-            <button value="=" onClick={button} className='btn-opr'>=</button>
+            <button value="*" onClick={button} className='btn-opr'>x</button>
+            <button value="=" onClick={operacion} className='btn-opr'>=</button>
           </div>
         </div>
 
